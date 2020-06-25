@@ -15,6 +15,8 @@ function showCards() {
     let cardHeader = document.createElement("div");
     cardHeader.setAttribute("class", "card-header");
 
+
+
     let cardBody = document.createElement("div");
     cardBody.setAttribute("class", "card-body");
 
@@ -24,10 +26,32 @@ function showCards() {
     let cardTitle = document.createTextNode(item.title);
     let cardText = document.createTextNode(item.text);
 
+    let buttonDelete = document.createElement("div");
+    buttonDelete.setAttribute("type", "button");
+    buttonDelete.setAttribute("class", "btn btn-secondary");
+
+    let position = cards.indexOf(item);
+    buttonDelete.setAttribute("onclick", `deleteCard(${position})`);
+
+    let deleteLabel = document.createTextNode("Excluir");
+
+
+
+    // buttonDelete.createTextNode("Excluir");
+
+
+
+
+    // <button type="button" class="btn btn-secondary">Delete</button>
+
+    buttonDelete.appendChild(deleteLabel);
     cardElement.appendChild(card);
     card.appendChild(cardHeader);
     card.appendChild(cardBody);
+    card.appendChild(buttonDelete);
+
     cardBody.appendChild(cardContent);
+
 
     cardContent.appendChild(cardText);
     cardHeader.appendChild(cardTitle);
@@ -59,6 +83,7 @@ function validaDados(title, text) {
 }
 
 buttonElement.onclick = createCard;
+
 
 function saveInStorage() {
   localStorage.setItem("card_list", JSON.stringify(cards));
