@@ -37,12 +37,6 @@ function showCards() {
 
 
 
-    // buttonDelete.createTextNode("Excluir");
-
-
-
-
-    // <button type="button" class="btn btn-secondary">Delete</button>
 
     buttonDelete.appendChild(deleteLabel);
     cardElement.appendChild(card);
@@ -84,6 +78,13 @@ function validaDados(title, text) {
 
 buttonElement.onclick = createCard;
 
+function deleteCard(position) {
+  cards.splice(position, 1);
+
+  showCards();
+
+
+}
 
 function saveInStorage() {
   localStorage.setItem("card_list", JSON.stringify(cards));
