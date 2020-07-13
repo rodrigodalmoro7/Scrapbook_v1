@@ -14,9 +14,9 @@ class TaskList {
     this.addButton.onclick = () => this.addNewScrap();
   }
 
-  setButtonEvents() {
+  setButtonEvents(position) {
     document.querySelectorAll(".delete-button").forEach((item) => {
-      item.onclick = () => thisdeleteScrap;
+      item.onclick = (event) => this.deleteScraps(event);
     });
   }
 
@@ -27,8 +27,7 @@ class TaskList {
       let position = scraps.indexOf(scrap); /* */
       this.scrapsField.innerHTML += this.createScrapCard(
         scrap.title,
-        scrap.message,
-        position
+        scrap.message
       );
     }
     this.setButtonEvents();
@@ -46,10 +45,9 @@ class TaskList {
     this.renderScraps();
   }
 
-  deleteScrap(position) {
-    this.scraps.splice(position, 1);
-
-    this.renderScraps();
+  deleteScrap(event) {
+    // this.scraps.splice(position, 1);
+    // this.renderScraps();
   }
 
   createScrapCard(title, message) {

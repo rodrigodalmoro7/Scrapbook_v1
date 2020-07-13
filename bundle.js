@@ -27,7 +27,11 @@ var TaskList = /*#__PURE__*/function () {
   _createClass(TaskList, [{
     key: "registerEvents",
     value: function registerEvents() {
-      this.addButton.onclick = this.addNewScrap();
+      var _this = this;
+
+      this.addButton.onclick = function () {
+        return _this.addNewScrap();
+      };
     }
   }, {
     key: "renderScraps",
