@@ -25,16 +25,14 @@ function addNewScrap() {
   let title = titleInput.value;
   let message = messageInput.value;
 
+  if (!messageTitle.value || !messageBody.value) {
+    return alert("Todos os campos devem ser preenchidos!");
+  }
+
   titleInput.value = "";
   messageInput.value = "";
 
   scraps.push({ title, message });
-
-  renderScraps();
-}
-
-function deleteScrap(position) {
-  scraps.splice(position, 1);
 
   renderScraps();
 }

@@ -18,10 +18,12 @@ class TaskList {
     this.addButton.onclick = () => this.addNewScrap();
   }
 
-  setButtonEvents(position) {
-    document.querySelectorAll(".delete-button").forEach((item) => {
-      item.onclick = (event) => this.deleteScraps(event);
-    });
+  setButtonEvents() {
+    console.log(
+      document.querySelectorAll(".delete-button").forEach((item) => {
+        item.onclick = (event) => this.deleteScraps(event);
+      })
+    );
   }
 
   renderScraps() {
@@ -63,9 +65,9 @@ class TaskList {
     this.scrapsField.innerHTML += html;
   }
 
-  createScrapCard(title, message) {
+  createScrapCard(id, title, message) {
     return `
-      <div class="message-cards card text-white bg-dark m-2 col-3">
+      <div class="message-cards card text-white bg-dark m-2 col-3" id-scrap="${id}">
         <div class="card-header font-weight-bold">${title}</div>
         <div class="card-body">
           <p class="card-text">
