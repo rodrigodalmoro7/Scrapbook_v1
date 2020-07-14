@@ -28,7 +28,11 @@ class TaskList {
     this.scrapsField.innerHTML = "";
 
     for (const scrap of this.scraps) {
-      const cardHtml = this.createScrapCard(scrap.title, scrap.message);
+      const cardHtml = this.createScrapCard(
+        scrap.id,
+        scrap.title,
+        scrap.message
+      );
 
       this.insertHtml(cardHtml);
     }
