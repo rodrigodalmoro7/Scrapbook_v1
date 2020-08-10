@@ -1,3 +1,11 @@
+import api from "./services/api";
+
+async function teste() {
+  const response = api.get("/scraps");
+
+  console.log(response);
+}
+
 class TaskList {
   constructor() {
     this.titleInput = document.getElementById("messageTitle");
