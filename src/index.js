@@ -95,9 +95,11 @@ class TaskList {
     });
 
     this.scraps.splice(scrapIndex, 1);
+
+    await api.delete(`/scraps/${scrapId}`);
   }
 
-  async openEditModal(event) {
+  openEditModal(event) {
     $("#editModal").modal("toggle");
 
     const scrapId = event.path[2].getAttribute("id-scrap");
@@ -109,14 +111,16 @@ class TaskList {
 
     this.editMessageInput.value = this.scraps[scrapIndex].message;
 
-    this.btnSaveEdit.onclick = () => this.saveChanges(scrapIndex);
+    this.btnSaveEdit.onclick = () => this.saveChanges(scrapIndex, scrapId);
   }
 
-  saveChanges(scrapIndex) {
-    let title = this.titleInput.value;
-    let message = this.messageInput.value;
+  async saveChanges(scrapIndex) {
+    let title = this.editTitleInput.value;
+    let message = this.editMessageInput.value;
 
+    await AudioProcessingEvent.put(`/scraps/${scrapId}`, { title, message });
     this.scraps[scrapIndex] = { title, message };
+
     this.renderScraps();
     $("#editModal").modal("hide");
   }
