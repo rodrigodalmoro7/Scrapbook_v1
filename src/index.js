@@ -18,12 +18,20 @@ class TaskList {
 
     this.scraps = [];
 
+    this.getScraps();
     this.setAddButtonEvent();
   }
 
-  generateScrapId() {
-    return this.scraps.length + 1;
+  async getScraps() {
+    const { data } = await api.get("/scraps");
+
+    this.scraps = data;
+    this.renderScraps();
   }
+
+  // generateScrapId() {
+  //   return this.scraps.length + 1;
+  // }
 
   setAddButtonEvent() {
     this.addButton.onclick = () => this.addNewScrap();
@@ -56,21 +64,28 @@ class TaskList {
     this.setButtonEvents();
   }
 
-  addNewScrap() {
-    let title = this.titleInput.value;
-    let message = this.messageInput.value;
+  async addNewScrap() {
+    let newTitle = this.titleInput.value;
+    let newMessage = this.messageInput.value;
 
     this.titleInput.value = "";
     this.messageInput.value = "";
 
-    const id = this.generateScrapId();
+    // const id = this.generateScrapId();
+
+    const {
+      data: { id, title, message },
+    } = await api.post("/scraps", {
+      title: newTitle,
+      message: newMessage,
+    });
 
     this.scraps.push({ id, title, message });
 
     this.generateScrap(id, title, message);
   }
 
-  deleteScraps(event) {
+  async deleteScraps(event) {
     event.path[2].remove();
 
     const scrapId = event.path[2].getAttribute("id-scrap");
@@ -82,7 +97,7 @@ class TaskList {
     this.scraps.splice(scrapIndex, 1);
   }
 
-  openEditModal(event) {
+  async openEditModal(event) {
     $("#editModal").modal("toggle");
 
     const scrapId = event.path[2].getAttribute("id-scrap");

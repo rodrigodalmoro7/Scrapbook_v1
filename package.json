@@ -15,10 +15,10 @@
     "webpack-dev-server": "^3.11.0"
   },
   "scripts": {
-    "dev": "yarn webpack-dev-server --mode development"
+    "dev": "webpack-dev-server --mode development"
   },
   "dependencies": {
     "axios": "^0.19.2",
-    "cors": "^2.8.5"
+    "babel-loader": "^8.1.0"
   }
 }
