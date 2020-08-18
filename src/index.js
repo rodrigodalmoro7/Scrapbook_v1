@@ -118,7 +118,7 @@ class TaskList {
     let title = this.editTitleInput.value;
     let message = this.editMessageInput.value;
 
-    await AudioProcessingEvent.put(`/scraps/${scrapId}`, { title, message });
+    await api.put(`/scraps/${scrapId}`, { title, message });
     this.scraps[scrapIndex] = { title, message };
 
     this.renderScraps();
