@@ -114,7 +114,7 @@ class TaskList {
     this.btnSaveEdit.onclick = () => this.saveChanges(scrapIndex, scrapId);
   }
 
-  async saveChanges(scrapIndex) {
+  async saveChanges(scrapIndex, scrapId) {
     let title = this.editTitleInput.value;
     let message = this.editMessageInput.value;
 
